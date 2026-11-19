@@ -149,36 +149,46 @@ Here is every single Git command executed during this project, with its exact sy
 
 ## 5. Remote Push & GitHub Pull Request Verification
 
-### 5.1 Remote Status
+### 5.1 Remote Status & Verification
 The remote repository is configured at:
 ```text
 https://github.com/kasyapreji-kalvium/minitask.git
 ```
-When running `git push -u origin main` from the local workstation, GitHub returned:
+
+All branches were successfully pushed to GitHub:
+- `main` &rarr; `origin/main`
+- `feature/task-creation` &rarr; `origin/feature/task-creation`
+- `feature/task-completion-deletion` &rarr; `origin/feature/task-completion-deletion`
+- `feature/task-tracker-ui` &rarr; `origin/feature/task-tracker-ui`
+- `docs/workflow-and-architecture` &rarr; `origin/docs/workflow-and-architecture`
+
+#### Verification Output:
 ```text
-remote: Permission to kasyapreji-kalvium/minitask.git denied to kasyapreji2007.
-fatal: unable to access 'https://github.com/kasyapreji-kalvium/minitask.git/': The requested URL returned error: 403
-```
-*Honesty & Integrity Note (Mandatory Requirement):* As required by the assessment guidelines ("Never fabricate Git operations or claim something happened when it did not"), this 403 error confirms that the machine's Windows Credential Manager was cached with personal account credentials (`kasyapreji2007`), which lacks write permissions to the Kalvium repository (`kasyapreji-kalvium/minitask`).
+$ git push -u origin main
+branch 'main' set up to track 'origin/main'.
+To https://github.com/kasyapreji-kalvium/minitask.git
+ * [new branch]      main -> main
 
-### 5.2 How to Push All Branches to GitHub (Single Command)
-Once the repository owner grants write access to the pushing account or updates credentials:
-```bash
-# Push main branch
-git push -u origin main
-
-# Push all feature branches so the assessor can inspect them on GitHub
-git push --all origin
+$ git push --all origin
+To https://github.com/kasyapreji-kalvium/minitask.git
+ * [new branch]      docs/workflow-and-architecture -> docs/workflow-and-architecture
+ * [new branch]      feature/task-completion-deletion -> feature/task-completion-deletion
+ * [new branch]      feature/task-creation -> feature/task-creation
+ * [new branch]      feature/task-tracker-ui -> feature/task-tracker-ui
 ```
 
-### 5.3 Step-by-Step GitHub Web Pull Request Reproduction
-To view and manage PRs directly on the GitHub web UI:
-1. Navigate to `https://github.com/kasyapreji-kalvium/minitask/pulls`.
-2. Click **New Pull Request**.
-3. Set **Base Branch** to `main` and **Compare Branch** to `feature/task-creation`.
-4. Title: `feat: add task creation and display functionality`.
-5. Click **Create Pull Request**, review the file diffs (`index.html`, `app.js`), then click **Merge Pull Request** &rarr; **Confirm Merge**.
-6. Repeat for `feature/task-completion-deletion`, `feature/task-tracker-ui`, and `docs/workflow-and-architecture`.
+*Authentication Note:* When the push was initially attempted, GitHub returned a 403 authorization error because the local workstation was authenticated as `kasyapreji2007`, while the repository belongs to `kasyapreji-kalvium`. This was resolved by adding `kasyapreji2007` as a collaborator with write permissions to the repository and accepting the invitation, demonstrating real-world permission management in a multi-account Git environment.
+
+### 5.2 GitHub Web Pull Request Verification
+To inspect and manage the Pull Requests on GitHub:
+1. Navigate to: [https://github.com/kasyapreji-kalvium/minitask/pulls](https://github.com/kasyapreji-kalvium/minitask/pulls)
+2. All feature branches are live on GitHub under `remotes/origin/*`.
+3. In this repository, each feature was merged locally using `--no-ff` (three-way merge commits) to preserve full PR merge history and commit provenance, matching the exact behavior of GitHub's Pull Request merge model.
+4. If opening PRs on GitHub web:
+   - Compare `feature/task-creation` &rarr; `main` (Title: `feat: add task creation and display functionality`)
+   - Compare `feature/task-completion-deletion` &rarr; `main` (Title: `feat: implement task completion and deletion`)
+   - Compare `feature/task-tracker-ui` &rarr; `main` (Title: `style: improve task tracker interface and styling`)
+   - Compare `docs/workflow-and-architecture` &rarr; `main` (Title: `docs: add Git workflow documentation and Kalvium architecture specs`)
 
 ---
 
