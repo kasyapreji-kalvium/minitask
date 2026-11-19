@@ -138,6 +138,38 @@ body {
   font-weight: 600;
 }
 
+/* Filter Buttons */
+.filter-group {
+  display: flex;
+  gap: 6px;
+  background: #f1f5f9;
+  padding: 3px;
+  border-radius: var(--radius-sm);
+}
+
+.filter-btn {
+  background: transparent;
+  border: none;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  color: var(--text-main);
+}
+
+.filter-btn.active {
+  background: #ffffff;
+  color: var(--primary);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
 /* Task List */
 .task-list {
   list-style: none;

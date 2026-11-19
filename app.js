@@ -1,10 +1,11 @@
 // ==========================================
 // GitFlow Demo - Personal Task Tracker
-// Feature: Task Completion & Deletion
+// Feature: Task Filters (All, Active, Completed)
 // ==========================================
 
 // State
 let tasks = [];
+let currentFilter = 'all';
 
 // DOM Elements
 const taskForm = document.getElementById('taskForm');
@@ -14,6 +15,7 @@ const taskList = document.getElementById('taskList');
 const emptyState = document.getElementById('emptyState');
 const taskCount = document.getElementById('taskCount');
 const completedCount = document.getElementById('completedCount');
+const filterButtons = document.querySelectorAll('.filter-btn');
 
 // Load stored tasks from localStorage
 function loadTasks() {
@@ -37,13 +39,21 @@ function saveTasks() {
 function renderTasks() {
   taskList.innerHTML = '';
 
-  if (tasks.length === 0) {
+  const filteredTasks = tasks.filter((task) => {
+    if (currentFilter === 'active') return !task.completed;
+    if (currentFilter === 'completed') return task.completed;
+    return true;
+  });
+
+  if (filteredTasks.length === 0) {
     emptyState.style.display = 'block';
+    emptyState.querySelector('p').textContent = 
+      tasks.length === 0 ? 'No tasks yet. Add one above to get started!' : `No ${currentFilter} tasks.`;
   } else {
     emptyState.style.display = 'none';
   }
 
-  tasks.forEach((task) => {
+  filteredTasks.forEach((task) => {
     const li = document.createElement('li');
     li.className = 'task-item' + (task.completed ? ' completed' : '');
     li.dataset.id = task.id;
@@ -135,6 +145,15 @@ function deleteTask(taskId) {
 
 // Event Listeners
 taskForm.addEventListener('submit', handleAddTask);
+
+filterButtons.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    filterButtons.forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    renderTasks();
+  });
+});
 
 // Initial application load
 document.addEventListener('DOMContentLoaded', () => {
