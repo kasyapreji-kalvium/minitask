@@ -1,6 +1,6 @@
 // ==========================================
 // GitFlow Demo - Personal Task Tracker
-// Feature: Task Creation & Display
+// Feature: Task Completion & Deletion
 // ==========================================
 
 // State
@@ -13,6 +13,7 @@ const addTaskBtn = document.getElementById('addTaskBtn');
 const taskList = document.getElementById('taskList');
 const emptyState = document.getElementById('emptyState');
 const taskCount = document.getElementById('taskCount');
+const completedCount = document.getElementById('completedCount');
 
 // Load stored tasks from localStorage
 function loadTasks() {
@@ -47,6 +48,14 @@ function renderTasks() {
     li.className = 'task-item' + (task.completed ? ' completed' : '');
     li.dataset.id = task.id;
 
+    // Toggle completion checkbox button
+    const toggleBtn = document.createElement('button');
+    toggleBtn.className = 'btn-toggle' + (task.completed ? ' is-completed' : '');
+    toggleBtn.setAttribute('aria-label', task.completed ? 'Mark pending' : 'Mark completed');
+    toggleBtn.innerHTML = task.completed ? '&#10003;' : '';
+    toggleBtn.addEventListener('click', () => toggleTaskCompletion(task.id));
+
+    // Task text container
     const contentDiv = document.createElement('div');
     contentDiv.className = 'task-content';
 
@@ -55,7 +64,20 @@ function renderTasks() {
     textSpan.textContent = task.text;
 
     contentDiv.appendChild(textSpan);
+
+    // Delete button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'btn-delete';
+    deleteBtn.setAttribute('aria-label', 'Delete task');
+    deleteBtn.innerHTML = '&times;';
+    deleteBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      deleteTask(task.id);
+    });
+
+    li.appendChild(toggleBtn);
     li.appendChild(contentDiv);
+    li.appendChild(deleteBtn);
     taskList.appendChild(li);
   });
 
@@ -65,7 +87,12 @@ function renderTasks() {
 // Update task counters
 function updateTaskStats() {
   const total = tasks.length;
+  const completed = tasks.filter((t) => t.completed).length;
+
   taskCount.textContent = `${total} ${total === 1 ? 'task' : 'tasks'}`;
+  if (completedCount) {
+    completedCount.textContent = `${completed} completed`;
+  }
 }
 
 // Add a new task
@@ -87,6 +114,23 @@ function handleAddTask(e) {
 
   taskInput.value = '';
   taskInput.focus();
+}
+
+// Toggle completion status
+function toggleTaskCompletion(taskId) {
+  const task = tasks.find((t) => t.id === taskId);
+  if (task) {
+    task.completed = !task.completed;
+    saveTasks();
+    renderTasks();
+  }
+}
+
+// Delete a task
+function deleteTask(taskId) {
+  tasks = tasks.filter((t) => t.id !== taskId);
+  saveTasks();
+  renderTasks();
 }
 
 // Event Listeners
