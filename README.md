@@ -7,14 +7,14 @@
 
 ## 2. Core Application Features
 - ➕ **Add Task**: Enter task title and add to the active tracker.
-- 📋 **Display Tasks**: View all active and completed tasks with timestamp metadata.
-- ✔️ **Mark Tasks Completed**: Toggle tasks between pending and completed state.
+- 📋 **Display Tasks**: View all active and completed tasks with dynamic counters.
+- ✔️ **Mark Tasks Completed**: Toggle tasks between pending and completed state with strike-through styling.
 - 🗑️ **Delete Tasks**: Remove tasks with instant UI updates.
-- 💾 **Persistent Storage**: Client-side `localStorage` data persistence.
+- 💾 **Persistent Storage**: Client-side `localStorage` data persistence across page reloads.
 
 ## 3. Tech Stack
 - **HTML5**: Semantic markup
-- **CSS3**: Modern responsive styling with CSS variables and flexbox
+- **CSS3**: Modern responsive styling with CSS custom properties and flexbox
 - **Vanilla JavaScript (ES6+)**: Pure client-side DOM manipulation without frameworks
 
 ## 4. Git Workflow Summary
@@ -26,7 +26,21 @@ This repository was developed using the Feature Branch Workflow:
 5. `docs/workflow-and-architecture`: Documentation branch containing `GIT_WORKFLOW.md`, `PRD.md`, `HLD.md`, and `LLD.md`.
 
 ## 5. Documentation Links
-- [Git Workflow Guide](docs/GIT_WORKFLOW.md)
-- [Product Requirements Document (PRD)](PRD.md)
-- [High-Level Design (HLD)](HLD.md)
-- [Low-Level Design (LLD)](LLD.md)
+- [Git Workflow Guide (docs/GIT_WORKFLOW.md)](docs/GIT_WORKFLOW.md)
+- [Product Requirements Document (PRD.md)](PRD.md)
+- [High-Level Design (HLD.md)](HLD.md)
+- [Low-Level Design (LLD.md)](LLD.md)
+
+## 6. Verification Commands
+To inspect the branches, history, and working tree:
+```bash
+# View all local branches
+git branch -a
+
+# View detailed commit graph
+git log --graph --oneline --all
+
+# Check working tree status
+git status
+```
+
