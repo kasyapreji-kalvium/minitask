@@ -324,6 +324,59 @@ body {
   color: var(--text-muted);
 }
 
+.card-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.effect-live-display {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+}
+
+.live-metric {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  flex-wrap: wrap;
+}
+
+.metric-label {
+  font-weight: 600;
+  color: #334155;
+}
+
+.metric-value {
+  font-family: "Fira Code", monospace;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.status-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+}
+
+.status-badge.active {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-badge.inactive {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
 .console-box {
   background-color: #0f172a;
   color: #e2e8f0;

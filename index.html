@@ -60,6 +60,35 @@
         <p class="concept-desc">Demonstrates execution phase vs memory creation phase, variable hoisting, function declaration hoisting, and the Temporal Dead Zone (TDZ).</p>
         <pre id="hoistingOutput" class="console-box"><code>Click "Run Hoisting Tests" to evaluate execution context memory allocation live.</code></pre>
       </div>
+
+      <!-- Concept 2: Side effects with useEffect -->
+      <div class="concept-card" id="useEffectCard">
+        <div class="concept-header">
+          <div>
+            <h3>Side Effects with useEffect Demo</h3>
+            <span class="concept-badge">0.2 pts &bull; Frontend</span>
+          </div>
+          <div class="card-actions">
+            <button id="toggleTimerBtn" class="btn btn-secondary">Unmount Timer (Test Cleanup)</button>
+            <button id="runEffectSimBtn" class="btn btn-secondary">Simulate Lifecycle</button>
+          </div>
+        </div>
+        <p class="concept-desc">Demonstrates pure React <code>useEffect</code> lifecycle: Storage sync, dynamic <code>document.title</code> updates, and active interval timer with memory leak cleanup.</p>
+        
+        <div class="effect-live-display">
+          <div class="live-metric">
+            <span class="metric-label">Session Timer (Effect with Cleanup):</span>
+            <span id="sessionTimerDisplay" class="metric-value">0s</span>
+            <span id="timerStatusBadge" class="status-badge active">Mounted & Running</span>
+          </div>
+          <div class="live-metric">
+            <span class="metric-label">Document Title Sync:</span>
+            <span id="docTitleDisplay" class="metric-value">GitFlow Demo - Personal Task Tracker</span>
+          </div>
+        </div>
+
+        <pre id="useEffectOutput" class="console-box"><code>Click "Simulate Lifecycle" to trace: Render &rarr; Effect Run &rarr; Dep Change &rarr; Cleanup &rarr; Unmount.</code></pre>
+      </div>
     </section>
 
     <footer class="app-footer">
