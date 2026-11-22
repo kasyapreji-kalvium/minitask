@@ -1,43 +1,68 @@
-# GitFlow Demo – Kalvium Project
+# GitFlow Demo – Kalvium Assessment Project
 
-> **Demo Project for Kalvium Project Assessor: Professional Git Workflow Demonstration**
+> **Evaluation Project for Kalvium Project Assessor: 3 Core Competencies**
+> 1. 🌟 **Git Workflow** (`0.3 pts • Engineering Practices`)
+> 2. ⚡ **JavaScript — Hoisting** (`0.1 pts • Frontend`)
+> 3. 🔄 **Side effects with useEffect** (`0.2 pts • Frontend`)
+
+---
 
 ## 1. Project Overview
-**GitFlow Demo** is a lightweight, responsive static web application (HTML, CSS, JavaScript) built as a simple personal task tracker. The sole purpose of this project is to demonstrate end-to-end industry-standard **Git & GitHub Workflows**, including branch management, semantic commit history, pull request creation, peer review patterns, and conflict resolution mechanisms.
+**GitFlow Demo** is a lightweight, responsive personal task tracker built as a single-page web application. It is purpose-built for the Kalvium Assessor evaluation, demonstrating professional Git workflow, JavaScript language mechanics (Hoisting & Execution Context), and React lifecycle side-effect management (`useEffect` with cleanup).
+
+---
 
 ## 2. Core Application Features
-- ➕ **Add Task**: Enter task title and add to the active tracker.
-- 📋 **Display Tasks**: View all active and completed tasks with dynamic counters.
-- ✔️ **Mark Tasks Completed**: Toggle tasks between pending and completed state with strike-through styling.
+- ➕ **Add Task**: Enter task title and add to the active tracker via button or `Enter`.
+- 📋 **Display Tasks**: View tasks dynamically with live pending/completed counters.
+- 🔍 **Filter Tasks**: Toggle view between `All`, `Active`, and `Completed` items.
+- ✔️ **Mark Tasks Completed**: Toggle tasks between pending and completed with strikethrough styling.
 - 🗑️ **Delete Tasks**: Remove tasks with instant UI updates.
-- 💾 **Persistent Storage**: Client-side `localStorage` data persistence across page reloads.
+- 💾 **Persistent Storage**: Client-side `localStorage` data persistence across reloads.
+- ⚡ **JavaScript Hoisting Inspector**: Live on-page test suite evaluating `var`, function declarations, and Temporal Dead Zone (TDZ).
+- 🔄 **`useEffect` Lifecycle Visualizer**: Live interval timer demonstrating mount, state dependency updates, and memory leak cleanup on unmount.
 
-## 3. Tech Stack
-- **HTML5**: Semantic markup
-- **CSS3**: Modern responsive styling with CSS custom properties and flexbox
-- **Vanilla JavaScript (ES6+)**: Pure client-side DOM manipulation without frameworks
+---
 
-## 4. Git Workflow Summary
-This repository was developed using the Feature Branch Workflow:
-1. `main`: Production-ready, stable branch.
-2. `feature/task-creation`: Feature branch for task input and listing.
-3. `feature/task-completion-deletion`: Feature branch for toggling complete and deleting tasks.
-4. `feature/task-tracker-ui`: Feature branch for responsive UI styles.
-5. `docs/workflow-and-architecture`: Documentation branch containing `GIT_WORKFLOW.md`, `PRD.md`, `HLD.md`, and `LLD.md`.
+## 3. Evaluated Kalvium Competencies
 
-## 5. Documentation Links
-- [Git Workflow Guide (docs/GIT_WORKFLOW.md)](docs/GIT_WORKFLOW.md)
-- [Product Requirements Document (PRD.md)](PRD.md)
-- [High-Level Design (HLD.md)](HLD.md)
-- [Low-Level Design (LLD.md)](LLD.md)
+### 1. Git Workflow (0.3 pts • Engineering Practices)
+- Developed using the **Feature Branch Workflow** with semantic commits (`feat:`, `style:`, `docs:`, `chore:`).
+- Feature branches pushed to GitHub, Pull Requests created, reviewed, and merged into `main` with non-fast-forward (`--no-ff`) merge commits.
+- Read full guide: [docs/GIT_WORKFLOW.md](docs/GIT_WORKFLOW.md)
 
-## 6. Verification Commands
-To inspect the branches, history, and working tree:
+### 2. JavaScript — Hoisting (0.1 pts • Frontend)
+- Explains and demonstrates memory creation phase vs code execution phase.
+- Function declarations hoisted with definition (callable before declaration line).
+- `var` hoisted as `undefined`.
+- `let` / `const` hoisted into the **Temporal Dead Zone (TDZ)** (throws `ReferenceError`).
+- Function expressions hoisted as `undefined` (throws `TypeError` on early call).
+- Read full guide & Viva Q&A: [docs/HOISTING.md](docs/HOISTING.md)
+
+### 3. Side Effects with useEffect (0.2 pts • Frontend)
+- Pure rendering vs side-effects (DOM mutations, localStorage sync, timers, subscriptions).
+- The 3 dependency array modes: `useEffect(fn)`, `useEffect(fn, [])`, and `useEffect(fn, [deps])`.
+- The **Cleanup Function** (`return () => clearInterval(...)`) preventing memory leaks and stale closures on unmount/re-render.
+- Read full guide & Viva Q&A: [docs/USE_EFFECT.md](docs/USE_EFFECT.md)
+
+---
+
+## 4. Documentation Directory
+- 📘 [Git Workflow Guide (docs/GIT_WORKFLOW.md)](docs/GIT_WORKFLOW.md)
+- ⚡ [JavaScript Hoisting Guide (docs/HOISTING.md)](docs/HOISTING.md)
+- 🔄 [Side Effects with useEffect Guide (docs/USE_EFFECT.md)](docs/USE_EFFECT.md)
+- 📋 [Product Requirements Document (PRD.md)](PRD.md)
+- 🏛️ [High-Level Design (HLD.md)](HLD.md)
+- 📐 [Low-Level Design (LLD.md)](LLD.md)
+
+---
+
+## 5. Verification Commands
 ```bash
-# View all local branches
+# View all local and remote branches
 git branch -a
 
-# View detailed commit graph
+# View detailed commit history graph
 git log --graph --oneline --all
 
 # Check working tree status

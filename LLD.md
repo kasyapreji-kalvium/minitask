@@ -76,6 +76,15 @@ interface Task {
   - Computes `total = tasks.length` and `completed = tasks.filter(t => t.completed).length`.
   - Sets text for `#taskCount` and `#completedCount`.
 
+#### 2.8 `hoistedLogger(message: string): void` & `runHoistingTests(): void`
+- **Purpose**: Demonstrates function declaration hoisting and executes interactive tests for `var` initialization (`undefined`) vs `let`/`const` Temporal Dead Zone.
+
+#### 2.9 `syncDocumentTitleEffect(): void`
+- **Purpose**: Implements a browser side effect updating `document.title` and mirror label with active pending task counts.
+
+#### 2.10 `mountSessionTimerEffect(): Function` & `toggleTimerMount(): void`
+- **Purpose**: Demonstrates `useEffect` interval lifecycle with an explicit cleanup closure invoking `clearInterval` to prevent memory leaks upon unmount.
+
 ---
 
 ### 3. DOM Element Reference Table

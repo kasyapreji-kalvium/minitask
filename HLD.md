@@ -48,6 +48,14 @@ The **GitFlow Demo Personal Task Tracker** follows a client-side Single Page App
 #### 2.3 Storage Layer (`localStorage`)
 - Persists state as a JSON string under key `'gitflow_tasks'`. Provides zero-latency, offline-first persistence without needing backend database calls.
 
+#### 2.4 Hoisting Verification Module (`docs/HOISTING.md` + `app.js`)
+- Explains and verifies the JavaScript engine's two-phase lifecycle (Memory Creation Phase vs Execution Phase).
+- Validates function declaration hoisting, `var` hoisting initialization (`undefined`), and `let`/`const` Temporal Dead Zone (TDZ).
+
+#### 2.5 Side Effects & Cleanup Engine (`docs/USE_EFFECT.md` + `app.js`)
+- Demonstrates React's `useEffect` pattern for managing side-effects after DOM paint.
+- Features `document.title` synchronization on state updates, `localStorage` synchronization, and session timer cleanup via `clearInterval` to avoid memory leaks.
+
 ---
 
 ### 3. Git Release & Branching Architecture

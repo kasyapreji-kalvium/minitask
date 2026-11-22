@@ -24,6 +24,8 @@ The **GitFlow Demo Personal Task Tracker** is a minimal, lightweight, single-pag
 | **FR-03** | Mark Completed | Users can toggle tasks between active and completed by clicking a circular check button. | Completed tasks render with strikethrough text and muted color styling. Status updates immediately in storage. |
 | **FR-04** | Delete Task | Users can delete a task by clicking an accessible delete button (`×`). | Task is permanently removed from the DOM and storage. Stats counter decrements accordingly. |
 | **FR-05** | Persistence | Tasks persist across page reloads. | Data is stored in browser `localStorage` as serialized JSON. |
+| **FR-06** | Hoisting Inspector | Users/Assessors can execute a live hoisting suite to evaluate JavaScript memory creation phase. | Verifies function declaration hoisting, `var` hoisting (`undefined`), `let`/`const` Temporal Dead Zone, and logs results on-screen. |
+| **FR-07** | `useEffect` Lifecycle & Cleanup | Users/Assessors can observe and toggle side effects with cleanup mechanics. | Demonstrates `document.title` dynamic synchronization, session timer with active `clearInterval` cleanup to prevent memory leaks, and interactive lifecycle step tracer. |
 
 ---
 
