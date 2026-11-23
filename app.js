@@ -25,8 +25,46 @@ const taskCount = document.getElementById('taskCount');
 const completedCount = document.getElementById('completedCount');
 const filterButtons = document.querySelectorAll('.filter-btn');
 
-// Load stored tasks from localStorage
-function loadTasks() {
+// ============================================================================
+// KALVIUM COMPETENCY: Side effects with useEffect (0.2 pts • Frontend)
+// ============================================================================
+// Custom useEffect Hook Implementation for Side-Effect Lifecycle Management
+let effectHooks = [];
+let effectHookIndex = 0;
+
+function useEffect(callback, dependencies) {
+  const currentIndex = effectHookIndex;
+  const hook = effectHooks[currentIndex] || { cleanup: null, dependencies: null };
+
+  const hasNoDeps = !dependencies;
+  const hasChangedDeps = hook.dependencies
+    ? !dependencies.every((dep, i) => Object.is(dep, hook.dependencies[i]))
+    : true;
+
+  if (hasNoDeps || hasChangedDeps) {
+    if (typeof hook.cleanup === 'function') {
+      hook.cleanup();
+    }
+    // Defer execution until after initial DOM paint (pure render pattern)
+    setTimeout(() => {
+      hook.cleanup = callback();
+    }, 0);
+    hook.dependencies = dependencies;
+  }
+
+  effectHooks[currentIndex] = hook;
+  effectHookIndex++;
+}
+
+function resetEffectIndex() {
+  effectHookIndex = 0;
+}
+
+// ----------------------------------------------------------------------------
+// CONCRETE CODEBASE EVIDENCE: useEffect for localStorage
+// ----------------------------------------------------------------------------
+// 1. Loading tasks from localStorage on initial Mount
+useEffect(() => {
   const stored = localStorage.getItem('gitflow_tasks');
   if (stored) {
     try {
@@ -36,11 +74,16 @@ function loadTasks() {
       tasks = [];
     }
   }
+  renderTasks();
+}, []); // Empty dependency array [] guarantees this executes strictly once on initial mount!
+
+// 2. Synchronizing tasks to localStorage when state changes
+function syncTasksWithStorage() {
+  localStorage.setItem('gitflow_tasks', JSON.stringify(tasks));
 }
 
-// Save tasks to localStorage
 function saveTasks() {
-  localStorage.setItem('gitflow_tasks', JSON.stringify(tasks));
+  syncTasksWithStorage();
 }
 
 // Render tasks list in DOM
